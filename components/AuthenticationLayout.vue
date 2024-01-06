@@ -83,9 +83,9 @@ const role = useCookie("role");
 const showModal = ref(false);
 
 const Links = ref([
-  { label: "Dashboard", to: "/Dashboard" },
-  { label: "Confirm Payment", to: "/UnregisterClass" },
-  { label: "Verify Enterprises", to: "/UnregisterClass" },
+  { label: "Dashboard", to: "/" },
+
+  { label: "Verify Enterprises", to: "/EnterpriseVerification" },
 ]);
 
 async function logOut() {
