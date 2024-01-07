@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   );
 
   const totalrows = await db.execute(
-    sql.raw(`select count(*) from enterprises;`),
+    sql.raw(`select count(*) from enterprises where verified=false;`),
   );
 
   return { subjects, totalrows };
