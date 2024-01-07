@@ -18,7 +18,7 @@
     <USlideover v-model="showModal">
       <div class="p-6">
         <div class="mb-6 flex items-center justify-between">
-          <NuxtLink to="/"><h1 class="text-4xl font-bold">Home</h1> </NuxtLink>
+          <NuxtLink><h1 class="text-4xl font-bold">ADMIN MENU</h1> </NuxtLink>
           <UButton
             icon="i-heroicons-x-mark"
             color="gray"

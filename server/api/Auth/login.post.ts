@@ -1,18 +1,22 @@
 import { sql } from "drizzle-orm";
-import bcrypt from "bcryptjs";
-import { db_user as db } from "../../../drizzle/db";
+
+import { db_admin as db } from "../../../drizzle/db";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const user = await db.execute(
-    sql.raw(`select * from users where email = '${body.email}'`),
+    sql.raw(
+      `select * from users where email = '${body.email}' and role ='admin'`,
+    ),
   );
+
+  if (user.length === 0) {
+    return { error: "Invalid credentials" };
+  }
   //if (bcrypt.compareSync(body.password, String(user[0].encrypted_password)))
   if (body.password === user[0].encrypted_password) {
     delete user[0].encrypted_password;
     let user_role = user[0].role + "s";
     let user_role_id = user[0].role + "_id";
-    let res: any[] = [];
-    let debuger: any[] = [];
 
     const result = await db.transaction(async (db) => {
       const session = await db.execute(
@@ -32,6 +36,4 @@ export default defineEventHandler(async (event) => {
 
     return result;
   }
-
-  return undefined;
 });

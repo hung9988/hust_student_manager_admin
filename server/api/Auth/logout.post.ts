@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm";
 
-import { db_user as db } from "../../../drizzle/db";
+import { db_admin as db } from "../../../drizzle/db";
 
 export default defineEventHandler(async (event) => {
   const cookie = parseCookies(event);
